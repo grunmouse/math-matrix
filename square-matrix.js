@@ -26,7 +26,7 @@ class SquareMatrix extends Matrix{
 		super(M, M, values);
 	}
 	
-	cominor(a, b, cashe){
+	cominor(a, b, cashe, last){
 		if(typeof a === 'number'){
 			a = [a];
 		}
@@ -40,13 +40,21 @@ class SquareMatrix extends Matrix{
 		if(M === 0){
 			return 0;
 		}
-		
-		return new SquareMatrix(M, N, this._cominor(a, b)).det(cashe);
+		return new SquareMatrix(M, N, this._cominor(a, b)).det(cashe, last);
 	}
 	
 	algcomp(i, j, cashe, last){
 		let p = i+j;
 		let k = [1, -1][p & 1];
+		
+		/*
+			Алгебраические дополнения верхних строк раскрываем по нулевой строке,
+			нижних строк - по последней строке.
+			Это эвристика, чтобы получить больше совпадающих миноров во вложенных расчётах.
+		*/
+		if(typeof last === 'undefined'){
+			last = (i*2 >= this.M);
+		}
 		
 		return k * this.cominor(i, j, cashe, last);
 	}
@@ -107,7 +115,7 @@ class SquareMatrix extends Matrix{
 					//Разложение по нулевой или последней строке
 					let row = last ? (range-1) : 0;
 					for(let col = 0; col<range; ++col){
-						result += this.value(0, col) * this.algcomp(0, col, cashe);
+						result += this.value(0, col) * this.algcomp(0, col, cashe, last);
 					}
 					return result;
 				}
