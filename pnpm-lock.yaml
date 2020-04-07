@@ -1,0 +1,7 @@
+dependencies:
+  '@grunmouse/tuple': 'link:../tuple'
+  tuple: 'link:../tuple'
+lockfileVersion: 5.1
+specifiers:
+  '@grunmouse/tuple': 'link:..\tuple'
+  tuple: 'link:..\tuple'

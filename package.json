@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "@grunmouse/tuple": "link:..\\tuple"
+  },
+  "name": "@grunmouse/math-matrix",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "mocha test/test"
+  },
+  "author": "Rakov (grunmouse@mail.ru)",
+  "license": "ISC",
+  "description": ""
+}
