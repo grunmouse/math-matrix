@@ -1,6 +1,5 @@
 const assert = require('assert');
-const Matrix = require('../matrix.js');
-const SquareMatrix = require('../square-matrix.js');
+const {Matrix,SquareMatrix}  = require('../index.js');
 
 describe('Cross constructor', ()=>{
 	it('Matrix as SquareMatrix', ()=>{

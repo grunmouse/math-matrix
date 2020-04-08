@@ -14,6 +14,10 @@ class Matrix{
 		this.values = [...values];
 	}
 	
+	clone(){
+		return new Matrix(this.M, this.N, this.values);
+	}
+	
 	/**
 	 * @param i - номер строки
 	 * @param j - номер столбца

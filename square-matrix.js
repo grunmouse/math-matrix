@@ -26,6 +26,15 @@ class SquareMatrix extends Matrix{
 		super(M, M, values);
 	}
 	
+	static E(M){
+		let values = new Array(M*M).fill(0);
+		for(let i=0; i<M; ++i){
+			values[M*i + i] = 1;
+		}
+		return new SquareMatrix(M, values);
+	}
+	
+	
 	cominor(a, b, cashe, last){
 		if(typeof a === 'number'){
 			a = [a];
