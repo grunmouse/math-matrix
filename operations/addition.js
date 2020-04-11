@@ -40,6 +40,6 @@ neg.def(Matrix, (a)=>{
 	return new Matrix(M, N, values);
 });
 
-oper.add.useName(Matrix);
-oper.sub.useName(Matrix);
-oper.neg.useName(Matrix);
+add.useName(Matrix);
+sub.useName(Matrix);
+neg.useName(Matrix);

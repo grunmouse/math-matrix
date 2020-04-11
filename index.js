@@ -1,7 +1,7 @@
 const Matrix = require('./matrix.js');
 const SquareMatrix = require('./square-matrix.js');
 
-require('./operation/index.js');
+require('./operations/index.js');
 
 module.exports = {
 	Matrix,

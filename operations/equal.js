@@ -12,5 +12,5 @@ eq.def(Matrix, Matrix, (a, b)=>{
 
 ne.def(Matrix, Matrix, (a, b)=>(!a[EQ](b)));
 
-oper.eq.useName(Matrix);
-oper.ne.useName(Matrix);
+eq.useName(Matrix);
+ne.useName(Matrix);

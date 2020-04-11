@@ -73,5 +73,13 @@ mul.def(Matrix, Vector, (a, r)=>{
 	
 });
 
+/**
+ * Массив интерпретируется как вектор
+ */
+mul.def(Matrix, Array, (a, r)=>{
+	let v = new Vector(...r);
+	return a.mul(v);
+});
+
 mul.useName(Matrix);
 div.useName(Matrix);

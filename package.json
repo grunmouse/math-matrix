@@ -1,11 +1,12 @@
 {
   "dependencies": {
+    "@grunmouse/math-vector": "link:..\\math-vector",
+    "@grunmouse/multioperator-ariphmetic": "link:..\\multioperator-ariphmetic",
     "@grunmouse/tuple": "link:..\\tuple"
   },
   "name": "@grunmouse/math-matrix",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
     "test": "mocha test/test"
   },
