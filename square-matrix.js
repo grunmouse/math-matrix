@@ -23,6 +23,14 @@ class SquareMatrix extends Matrix{
 		if(N !== M){
 			return new Matrix(M, N, values);
 		}
+		
+		if(SquareMatrix.Sized[M]){
+			let Ctor = SquareMatrix.Sized[M];
+			if(Ctor !== new.target){
+				return new Ctor(values);
+			}
+		}
+		
 		super(M, M, values);
 	}
 	
@@ -141,6 +149,8 @@ class SquareMatrix extends Matrix{
 	}
 }
 
-Matrix.prototype.Square = SquareMatrix;
+Matrix.Square = SquareMatrix;
+
+SquareMatrix.Sized = {};
 
 module.exports = SquareMatrix;

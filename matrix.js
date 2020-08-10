@@ -3,11 +3,11 @@ class Matrix{
 	/**
 	 * @param M - число строк
 	 * @param N - число столбцов
-	 * @param values : Iterable<Number> - 
+	 * @param values : Iterable<Number> - итератор элементов матрицы, перебирающий её по строкам
 	 */
 	constructor(M, N, values){
-		if(M === N && this.Square && this.Square !== this.constructor){
-			return new this.Square(M, values);
+		if(M === N && Matrix.Square && Matrix.Square !== new.target && !(new.target.prototype instanceof Matrix.Square)){
+			return new Matrix.Square(M, values);
 		}
 		this.M = M;
 		this.N = N;

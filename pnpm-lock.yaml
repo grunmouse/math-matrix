@@ -1,9 +1,11 @@
 dependencies:
   '@grunmouse/math-vector': 'link:../math-vector'
   '@grunmouse/multioperator-ariphmetic': 'link:../multioperator-ariphmetic'
+  '@grunmouse/multioperator-spec-mul': 'link:../multioperator-spec-mul'
   '@grunmouse/tuple': 'link:../tuple'
 lockfileVersion: 5.1
 specifiers:
   '@grunmouse/math-vector': 'link:..\math-vector'
   '@grunmouse/multioperator-ariphmetic': 'link:..\multioperator-ariphmetic'
+  '@grunmouse/multioperator-spec-mul': 'link:..\multioperator-spec-mul'
   '@grunmouse/tuple': 'link:..\tuple'
