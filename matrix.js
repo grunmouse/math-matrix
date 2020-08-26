@@ -11,11 +11,25 @@ class Matrix{
 		}
 		this.M = M;
 		this.N = N;
-		this.values = [...values];
+		if(!values){
+			values = [];
+		}
+		let len = M*N, tail = [];
+		if(values.length<len){
+			tail = Array.from({length:len - values.length}).fill(0);
+		}
+		this._values = [...values, ...tail];
 	}
 	
 	clone(){
 		return new Matrix(this.M, this.N, this.values);
+	}
+	
+	static O(M, N){
+		if(!N){
+			N = M;
+		}
+		return new this(M, N);
 	}
 	
 	/**
@@ -35,7 +49,7 @@ class Matrix{
 	}
 	
 
-	* _transpone(){
+	* _transpose(){
 		for(let i=0; i<this.M; ++i){
 			for(let j=0; i<this.N; ++j){
 				yield this.value(j, i);
@@ -43,9 +57,9 @@ class Matrix{
 		}
 	}
 	
-	transpone(){
+	transpose(){
 		const Ctor = this.constructor;
-		return new Ctor(this.N, this.M, this._transpone());
+		return new Ctor(this.N, this.M, this._transpose());
 	}
 	
 	/**

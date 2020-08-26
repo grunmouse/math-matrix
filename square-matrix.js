@@ -42,6 +42,43 @@ class SquareMatrix extends Matrix{
 		return new SquareMatrix(M, values);
 	}
 	
+	/**
+	 * Создаёт матрицу поворота
+	 * @param M - размер
+	 * @param ax : Array[2]<Number> - номера осей, в которых происходит поворот
+	 * @param a : Number - угол поворота
+	 */
+	static rotate(M, ax, a){
+		let ca = Math.cos(a), sa = Math.sin(a);
+		const _values = function* (){
+			for(let r = 0; r<M; r++){
+				let axr = ax.indexOf(r);
+				for(let c = 0; c<M; c++){
+					let axc = ax.indexOf(c);
+					if(!~axr && !~axc){
+						if(axr === axc){
+							yield ca;
+						}
+						else if(axc>axr){
+							yield -sa;
+						}
+						else{
+							yield sa;
+						}
+					}
+					else if(c===r){
+						yield 1;
+					}
+					else{
+						yield 0;
+					}
+				}
+			}
+		}
+		
+		return new this(M, _values());
+	}
+	
 	
 	cominor(a, b, cashe, last){
 		if(typeof a === 'number'){

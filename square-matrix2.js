@@ -5,6 +5,17 @@ class SquareMatrix2 extends SquareMatrix {
 		super(2, values);
 	}
 	
+	/**
+	 * создаёт матрицу поворота на угол a
+	 */
+	static rotate(a){
+		let ca = Math.cos(a), sa = Math.sin(a);
+		return new this([
+			ca, -sa,
+			sa, ca
+		]);
+	}
+	
 	xx(){
 		return this.values[0];
 	}

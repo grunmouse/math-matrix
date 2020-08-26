@@ -25,7 +25,7 @@ pow.def(SquareMatrix, Number, (a, v)=>{
 		let code = v.toString('2').split('').reverse();
 		
 		let result = code.reduce((akk, digit, i)=>{
-			if(digit){
+			if(+digit){
 				akk = akk.mul(a);
 			}
 			if(i>0){
