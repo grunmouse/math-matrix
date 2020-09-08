@@ -32,16 +32,55 @@ class Matrix{
 		return new this(M, N);
 	}
 	
+	static row(arr){
+		return new Matrix(1, arr.length, arr);
+	}
+
+	static column(arr){
+		return new Matrix(arr.length, 1, arr);
+	}
+	
+	static concat(m){
+		let values = [], M=0, N=m[0].N;
+		for(let matrix of m){
+			values.push(...matrix._values);
+			M+=matrix.M;
+		}
+		return new Matrix(M, N, values);
+	}
+	
+	
+	static rowconcat(m){
+		const M = m[0].M;
+		let rows = Array.from({length:M}, ()=>([]));
+		for(let matrix of m){
+			if(matrix.M !== M){
+				throw new Error('Incorrect matrix size');
+			}
+			for(let i=0; i<M; ++i){
+				rows[i].push(...matrix.getRow(i));
+			}
+		}
+		let N = rows[0].length;
+		let values = [].concat(...rows);
+		return new Matrix(M, N, values);
+	}
+	
 	/**
 	 * @param i - номер строки
 	 * @param j - номер столбца
 	 */
 	_index(i, j){
-		return i*this.M + j;
+		return i*this.N + j;
 	}
 	
 	value(i, j){
 		return this._values[this._index(i, j)];
+	}
+	
+	getRow(i){
+		let start = this._index(i, 0), len = this.N;
+		return this._values.slice(start, start+len);
 	}
 	
 	isSquare(){
