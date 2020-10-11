@@ -101,6 +101,15 @@ class Matrix{
 		return new Ctor(this.N, this.M, this._transpose());
 	}
 	
+	minor(a, b){
+		const Ctor = this.constructor;
+		if(a.length !== b.length){
+			throw new Error('Minor is not square');
+		}
+		let M = a.length;
+		return new Ctor(M, M, this._minor(a,b)).det();
+	}
+	
 	/**
 	 * Генерирует значения минора
 	 * @param a : Array<Number> - массив номеров строк
