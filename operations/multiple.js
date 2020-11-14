@@ -54,7 +54,7 @@ mul.def(Matrix, Matrix, (a, b)=>{
  * Умножение матрицы на вектор
  */
 mul.def(Matrix, Vector, (a, r)=>{
-	if(a.N !== b.length){
+	if(a.N !== r.length){
 		throw new TypeError('Incorrect size matrix and vector for multiple');
 	}
 	const M = a.M, len = a.N;
@@ -63,12 +63,12 @@ mul.def(Matrix, Vector, (a, r)=>{
 	for(let i = 0; i<M; ++i){
 		let result = 0;
 		for(let x = 0; x<len; ++x){
-			result = result[ADD](mul.call(a.value(i,x), b.value(x,j)));
+			result = result[ADD](mul.call(a.value(i,x), r[x]));
 		}
 		values[i] = result;
 	}
 	
-	const Ctor = M === N ? r.constructor : Vector;
+	const Ctor = M === len ? r.constructor : Vector;
 	return new Ctor(...values);
 	
 });
