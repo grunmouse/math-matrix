@@ -1,5 +1,6 @@
+const MatrixBase = require('./matrix-base.js');
 
-class Matrix{
+class Matrix extends MatrixBase{
 	/**
 	 * @param M - число строк
 	 * @param N - число столбцов
@@ -9,16 +10,7 @@ class Matrix{
 		if(M === N && Matrix.Square && Matrix.Square !== new.target && !(new.target.prototype instanceof Matrix.Square)){
 			return new Matrix.Square(M, values);
 		}
-		this.M = M;
-		this.N = N;
-		if(!values){
-			values = [];
-		}
-		let len = M*N, tail = [];
-		if(values.length<len){
-			tail = Array.from({length:len - values.length}).fill(0);
-		}
-		this._values = [...values, ...tail];
+		super(M, N, values);
 	}
 	
 	clone(){

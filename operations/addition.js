@@ -11,8 +11,9 @@ add.def(Matrix, Matrix, (a, b)=>{
 		throw new TypeError('Matrix is not equimetric');
 	}
 	const Matrix = a.constructor;
+	const {N, M} = a;
 	
-	let values = a.values.map((_, i)=>(a[i][ADD](b[i])));
+	let values = a._values.map((_, i)=>(a._values[i][ADD](b._values[i])));
 	
 	return new Matrix(M, N, values);
 	
@@ -25,7 +26,7 @@ sub.def(Matrix, Matrix, (a, b)=>{
 	const Matrix = a.constructor;
 	const {N, M} = a;
 	
-	let values = a.values.map((_, i)=>(a[i][SUB](b[i])));
+	let values = a.values.map((_, i)=>(a._values[i][SUB](b._values[i])));
 	
 	return new Matrix(M, N, values);
 	
@@ -35,7 +36,7 @@ neg.def(Matrix, (a)=>{
 	const Matrix = a.constructor;
 	const {N, M} = a;
 	
-	let values = a.values.map((x)=>(x[NEG]()));
+	let values = a.values.map((x)=>(x._values[NEG]()));
 	
 	return new Matrix(M, N, values);
 });
