@@ -60,5 +60,7 @@ describe('math-matrix', ()=>{
 			assert.equal(m.constructor, Matrix);
 		});
 	});
+	
+	require('./det-test.js');
 
 });

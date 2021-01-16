@@ -98,9 +98,6 @@ class SquareMatrix extends Matrix{
 	}
 	
 	algcomp(i, j, cashe, last){
-		let p = i+j;
-		let k = [1, -1][p & 1];
-		
 		/*
 			Алгебраические дополнения верхних строк раскрываем по нулевой строке,
 			нижних строк - по последней строке.
@@ -110,7 +107,13 @@ class SquareMatrix extends Matrix{
 			last = (i*2 >= this.M);
 		}
 		
-		return k * this.cominor(i, j, cashe, last);
+		let cominor = this.cominor(i, j, cashe, last);
+		if(p & 1){
+			return cominor.neg();
+		}
+		else{
+			return cominor;
+		}
 	}
 	
 	*_adjunct(cashe){

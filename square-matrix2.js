@@ -1,5 +1,10 @@
 const SquareMatrix = require('./square-matrix.js');
 
+const {
+	symbols:{MUL, DIV, ADD, SUB, NEG}
+} = require('@grunmouse/multioperator-ariphmetic');
+
+
 class SquareMatrix2 extends SquareMatrix {
 	constructor(values){
 		super(2, values);
@@ -27,6 +32,16 @@ class SquareMatrix2 extends SquareMatrix {
 	}
 	yy(){
 		return this.values[3];
+	}
+	
+	_det(){
+		console.log('override ok');
+		let [
+			a, b,
+			c, d
+		] = this.values;
+		
+		return a[MUL](d)[SUB](b[MUL](c));
 	}
 }
 
