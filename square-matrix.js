@@ -179,6 +179,13 @@ class SquareMatrix extends Matrix{
 		}
 	}
 	
+	/**
+	 * Эвристическая функция, проверяющая по известным признакам, инволютивна ли матрица
+	 */
+	isInvolutive(){
+		
+	}
+	
 	inverse(cashe){
 		cashe = cashe || new TupleMap();
 		let det = this.det(cashe);

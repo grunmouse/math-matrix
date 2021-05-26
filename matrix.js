@@ -17,6 +17,18 @@ class Matrix extends MatrixBase{
 		return new Matrix(this.M, this.N, this.values);
 	}
 	
+	static generate(M, N, callback){
+		let gen = function *(){
+			for(let i=0; i<M; ++i){
+				for(let j=0; j<N; ++j){
+					yield callback(j, i);
+				}
+			}
+		}
+		
+		return new Matrix(M, N, gen());
+	}
+	
 	static O(M, N){
 		if(!N){
 			N = M;
@@ -32,6 +44,9 @@ class Matrix extends MatrixBase{
 		return new Matrix(arr.length, 1, arr);
 	}
 	
+	/**
+	 * Составляет матрицы по вертикали
+	 */
 	static concat(m){
 		let values = [], M=0, N=m[0].N;
 		for(let matrix of m){
@@ -41,7 +56,9 @@ class Matrix extends MatrixBase{
 		return new Matrix(M, N, values);
 	}
 	
-	
+	/**
+	 * Составляет матрицы по горизонтали
+	 */
 	static rowconcat(m){
 		const M = m[0].M;
 		let rows = Array.from({length:M}, ()=>([]));
@@ -75,6 +92,16 @@ class Matrix extends MatrixBase{
 		return this._values.slice(start, start+len);
 	}
 	
+	sliceRows(a, b){
+		if(!b){
+			b = this.M;
+		}
+		let start = this._index(a, 0), fin = this._index(b, 0);
+		let values = this._values.slice(start, end);
+		
+		return new Matrix(b-a, this.N, values);
+	}
+	
 	isSquare(){
 		return this.M === this.N;
 	}
@@ -82,7 +109,7 @@ class Matrix extends MatrixBase{
 
 	* _transpose(){
 		for(let i=0; i<this.M; ++i){
-			for(let j=0; i<this.N; ++j){
+			for(let j=0; j<this.N; ++j){
 				yield this.value(j, i);
 			}
 		}
@@ -90,7 +117,7 @@ class Matrix extends MatrixBase{
 	
 	transpose(){
 		const Ctor = this.constructor;
-		return new Ctor(this.N, this.M, this._transpose());
+		return new Matrix(this.N, this.M, this._transpose());
 	}
 	
 	minor(a, b){

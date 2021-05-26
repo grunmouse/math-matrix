@@ -12,11 +12,14 @@ class MatrixBase{
 		if(!values){
 			values = [];
 		}
+		else{
+			values = [...values];
+		}
 		let len = M*N, tail = [];
 		if(values.length<len){
 			tail = Array.from({length:len - values.length}).fill(0);
 		}
-		this._values = [...values, ...tail];
+		this._values = values.concat(tail);
 	}
 	
 	[inspect](depth, options){
