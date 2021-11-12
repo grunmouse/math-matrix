@@ -1,5 +1,6 @@
 const Matrix = require('./matrix.js');
 const {TupleMap} = require('@grunmouse/tuple');
+const {NEG} = require('@grunmouse/multioperator-ariphmetic').symbols;
 
 class SquareMatrix extends Matrix{
 	/**
@@ -94,6 +95,7 @@ class SquareMatrix extends Matrix{
 		if(M === 0){
 			return 0;
 		}
+
 		return new SquareMatrix(M, N, this._cominor(a, b)).det(cashe, last);
 	}
 	
@@ -108,8 +110,10 @@ class SquareMatrix extends Matrix{
 		}
 		
 		let cominor = this.cominor(i, j, cashe, last);
-		if(p & 1){
-			return cominor.neg();
+		
+		if((i+j) & 1){
+			return -cominor;
+			//return cominor[NEG]();
 		}
 		else{
 			return cominor;
@@ -119,7 +123,7 @@ class SquareMatrix extends Matrix{
 	*_adjunct(cashe){
 		cashe = cashe || new TupleMap();
 		for(let i=0; i<this.M; ++i){
-			for(let j=0; i<this.N; ++j){
+			for(let j=0; j<this.N; ++j){
 				yield this.algcomp(i, j, cashe);
 			}
 		}
@@ -190,7 +194,7 @@ class SquareMatrix extends Matrix{
 		cashe = cashe || new TupleMap();
 		let det = this.det(cashe);
 		let adj = this.adjunct(cashe);
-		let union = adj.transpone();
+		let union = adj.transpose();
 		let data = union.values.map((a)=>(a/det));
 		return new SquareMatrix(this.M, data);
 	}

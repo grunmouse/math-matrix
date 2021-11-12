@@ -35,7 +35,6 @@ class SquareMatrix2 extends SquareMatrix {
 	}
 	
 	_det(){
-		console.log('override ok');
 		let [
 			a, b,
 			c, d

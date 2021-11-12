@@ -150,8 +150,8 @@ class Matrix extends MatrixBase{
 	 * @return Iterable<Number>
 	 */
 	_cominor(a, b){
-		let ii = Array.from({lenght:this.M}, (_, i)=>i).filter((i)=>(!a.includes(i)));
-		let jj = Array.from({lenght:this.N}, (_, i)=>i).filter((i)=>(!b.includes(i)));
+		let ii = Array.from({length:this.M}, (_, i)=>(i)).filter((i)=>(!a.includes(i)));
+		let jj = Array.from({length:this.N}, (_, i)=>(i)).filter((i)=>(!b.includes(i)));
 		
 		return this._minor(ii, jj);
 	}
