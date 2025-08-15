@@ -75,6 +75,14 @@ class MatrixBase{
 		return this._values.slice(i*N, (i+1)*N);
 	}
 	
+	getRows(){
+		let values = this._values;
+		let {M, N} = this;
+		
+		let rows = Array.from({length:M}, (_,i)=>(values.slice(i*N, (i+1)*N)));
+		return rows;
+	}
+	
 	*itrItems(){
 		for(let i=0; i<this._values.length; ++i){
 			return [...this._pos(i), this._values[i]];
