@@ -68,13 +68,20 @@ class SquareMatrix3 extends SquareMatrix {
 			d, e, f,
 			h, i, j
 		] = this.values;
-		
+		/*
+			a*e*j
+			+ b*f*h
+			+ c*d*i
+			- c*e*f
+			- b*d*j
+			- a*f*i
+		*/
 		return (a)[MUL](e)[MUL](j)
 			[ADD]((b)[MUL](f)[MUL](h))
 			[ADD]((c)[MUL](d)[MUL](i))
 			[SUB]((c)[MUL](e)[MUL](h))
 			[SUB]((b)[MUL](d)[MUL](j))
-			[SUB]((a)[MUL](f)[MUL](j));
+			[SUB]((a)[MUL](f)[MUL](i));
 	}
 	
 }
