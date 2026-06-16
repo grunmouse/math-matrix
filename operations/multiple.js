@@ -9,23 +9,20 @@ const {Vector} = require('@grunmouse/math-vector');
 
 /* Умножение на число */
 mul.def(Matrix, Number, (m, a)=>{
-	const Matrix = m.constructor;
 	const {N, M} = m;
-	let values = a.values.map((x)=>(x[MUL](a)));
+	let values = m.values.map((x)=>(x[MUL](a)));
 	return new Matrix(M, N, values);
 });
 
 div.def(Matrix, Number, (m, a)=>{
-	const Matrix = m.constructor;
 	const {N, M} = m;
-	let values = a.values.map((x)=>(x[DIV](a)));
+	let values = m.values.map((x)=>(x[DIV](a)));
 	return new Matrix(M, N, values);
 });
 
 mul.def(Number, Matrix, (a, m)=>{
-	const Matrix = m.constructor;
 	const {N, M} = m;
-	let values = a.values.map((x)=>(x[MUL](a)));
+	let values = m.values.map((x)=>(x[MUL](a)));
 	return new Matrix(M, N, values);
 });
 
